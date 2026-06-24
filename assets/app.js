@@ -959,7 +959,7 @@ function renderDayBlock(day){
           let card;
           if(e.type==='spot'){
             const c=CATS[e.cat]||CATS.sightseeing;
-            const hu=e.url&&e.url.startsWith('http');
+            const hu=isSafeHttpUrl(e.url);
             card=`<div class="spot-card cat-${esc(e.cat||'sightseeing')}">
               <div class="spot-r1">
                 <select class="cat-sel ${c.cls}" title="分類" onchange="setEntryR(${day.id},${e.id},'cat',this.value)">${catOptions(e.cat||'sightseeing')}</select>
@@ -1011,7 +1011,7 @@ function renderDayBlock(day){
             const m=TR.find(x=>x.val===e.mode)||TR[0];
             const opts=TR.map(x=>`<option value="${x.val}"${e.mode===x.val?' selected':''}>${x.sym} ${x.label}</option>`).join('');
             const customMode=e.mode==='other' ? `<input class="tr-place tr-custom" type="text" value="${esc(e.modeText||'')}" placeholder="移動手段" oninput="setEntry(${day.id},${e.id},'modeText',this.value)" />` : '';
-            const hu=e.url&&e.url.startsWith('http');
+            const hu=isSafeHttpUrl(e.url);
             card=`<div class="tr-card">
               <div class="tr-r1">
                 <select class="tr-sel" onchange="setEntryR(${day.id},${e.id},'mode',this.value)">${opts}</select>
@@ -1425,7 +1425,7 @@ function loadSampleTrip(){
   days=[
     {id:1,date:'',memo:'札幌入り・市内観光',entries:[
       {id:1,type:'spot',name:'大通公園',cat:'sightseeing',arrive:'',leave:'',nextMove:'徒歩10分',checkoutDate:'',checkoutTime:'',checkoutMemo:'',cost:'',note:'',url:'',reservation:''},
-      {id:2,type:'transport',mode:'train',customMode:'',from:'札幌',to:'美瑛',depart:'',arrive:'',duration:'1時間30分',note:'乗り場・予約番号など',cost:'',url:'',reservation:''}
+      {id:2,type:'transport',mode:'train',customMode:'',from:'札幌',to:'美瑛',depart:'',arrive:'',duration:'3時間',note:'乗り場・予約番号など',cost:'',url:'',reservation:''}
     ]},
     {id:2,date:'',memo:'美瑛・富良野エリア',entries:[
       {id:3,type:'spot',name:'美瑛の丘',cat:'nature',arrive:'',leave:'',nextMove:'',checkoutDate:'',checkoutTime:'',checkoutMemo:'',cost:'',note:'',url:'',reservation:''}
@@ -1521,8 +1521,9 @@ function importJSONFile(ev){
 }
 function isSafeHttpUrl(url){
   const s = String(url || '').trim();
+  if(!/^https?:\/\//i.test(s)) return false;
   try {
-    const u = new URL(s, location.href);
+    const u = new URL(s);
     return u.protocol === 'http:' || u.protocol === 'https:';
   } catch(e) {
     return false;

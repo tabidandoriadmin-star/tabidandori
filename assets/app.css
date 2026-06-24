@@ -74,7 +74,7 @@ button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-
 
 .wcard { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); margin-bottom: 8px; padding: 10px 14px; }
 .wcard-r1 { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-.wcard-r2 { display: flex; align-items: center; gap: 6px; margin-top: 7px; }
+.wcard-r2 { display: flex; align-items: stretch; gap: 6px; margin-top: 7px; }
 .card-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 7px; }
 .wish-toolbar { display: flex; justify-content: flex-end; gap: 8px; margin: -4px 0 10px; flex-wrap: wrap; }
 .wish-compact-hint { font-size: 11px; color: var(--muted); align-self: center; }
@@ -126,12 +126,12 @@ button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-
 .ecard .card-more-menu { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
 .ecard .order-btns { gap: 3px; }
 .mobile-action-label { display: none; }
-.url-field { display: flex; align-items: center; gap: 6px; flex: 1; }
+.url-field { display: flex; align-items: center; gap: 6px; flex: 1; min-width: 0; }
 .url-field svg { width:14px; height:14px; color: var(--hint); flex-shrink: 0; }
-.url-inp { flex: 1; font-size: 12px; padding: 4px 8px; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--muted); }
+.url-inp { flex: 1; min-width: 0; font-size: 12px; padding: 4px 8px; border: 1px solid var(--border2); border-radius: 6px; background: var(--surface); color: var(--muted); }
 .url-inp::placeholder { color: var(--hint); }
 .url-inp:focus { outline: none; border-color: var(--teal); }
-textarea.url-inp { min-height: 38px; line-height: 1.45; font-family: inherit; resize: vertical; overflow-wrap: anywhere; }
+textarea.url-inp { width: 100%; min-height: 42px; line-height: 1.45; font-family: inherit; resize: vertical; overflow-wrap: anywhere; }
 .url-open { color: var(--blue); font-size: 13px; text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
 .url-open svg { width:14px; height:14px; }
 .empty-msg { text-align: center; padding: 2rem; font-size: 13px; color: var(--hint); }
@@ -211,7 +211,7 @@ textarea.url-inp { min-height: 38px; line-height: 1.45; font-family: inherit; re
 .time-lbl { font-size: 11px; color: var(--hint); white-space: nowrap; }
 .time-inp { font-size: 12px; border: 1px solid var(--border); border-radius: 5px; padding: 3px 6px; background: var(--surface); color: var(--muted); width: 90px; }
 .time-inp:focus { outline: none; border-color: var(--teal); }
-.note-inp { flex: 1; font-size: 12px; font-family: inherit; border: 1px solid transparent; border-radius: 5px; background: transparent; color: var(--muted); min-width: 60px; min-height: 32px; line-height: 1.45; padding: 5px 7px; resize: vertical; overflow-wrap: anywhere; }
+.note-inp { flex: 1 1 100%; width: 100%; font-size: 12px; font-family: inherit; border: 1px solid var(--border2); border-radius: 5px; background: var(--surface); color: var(--muted); min-width: 0; min-height: 34px; line-height: 1.45; padding: 5px 7px; resize: vertical; overflow-wrap: anywhere; }
 .note-inp::placeholder { color: var(--hint); }
 .note-inp:focus { outline: none; border-color: var(--teal); background: var(--surface); }
 .url-row { display: flex; align-items: center; gap: 6px; margin-top: 5px; flex: 1 1 180px; min-width: 0; }
@@ -288,7 +288,7 @@ textarea.url-inp { min-height: 38px; line-height: 1.45; font-family: inherit; re
 .tr-dur { font-size: 12px; border: 1px solid var(--border); border-radius: 5px; padding: 3px 7px; background: var(--surface); color: var(--muted); width: 80px; }
 .tr-dur::placeholder { color: var(--hint); }
 .tr-dur:focus { outline: none; border-color: var(--teal); }
-.tr-note { font-size: 12px; font-family: inherit; border: 1px solid var(--border); border-radius: 5px; padding: 5px 7px; background: var(--surface); color: var(--muted); min-width: 110px; min-height: 34px; line-height: 1.45; flex: 1; resize: vertical; overflow-wrap: anywhere; }
+.tr-note { font-size: 12px; font-family: inherit; border: 1px solid var(--border2); border-radius: 5px; padding: 5px 7px; background: var(--surface); color: var(--muted); min-width: 0; min-height: 34px; line-height: 1.45; flex: 1 1 100%; width: 100%; resize: vertical; overflow-wrap: anywhere; }
 .tr-note::placeholder { color: var(--hint); }
 .tr-note:focus { outline: none; border-color: var(--teal); }
 .tr-custom { width: 105px; }
@@ -426,6 +426,11 @@ textarea.url-inp { min-height: 38px; line-height: 1.45; font-family: inherit; re
   .wcard .card-more-menu .search-action::after { content: "検索"; font-size: 11px; }
   .wcard .desktop-action-label { display: inline; }
   .wcard .mobile-action-label { display: none; }
+  .wcard-r2 { align-items: stretch; margin-top: 6px; }
+  .wcard-r2 .url-field { flex: 1 1 100%; width: 100%; align-items: flex-start; }
+  .wcard-r2 textarea.url-inp {
+    min-height: 48px; background: var(--surface); border-color: var(--border2);
+  }
   .ecard .card-actions { gap: 4px; margin-top: 5px; }
   .ecard .card-more { display: contents; position: static; }
   .ecard .card-more > summary { display: none; }
@@ -465,7 +470,9 @@ textarea.url-inp { min-height: 38px; line-height: 1.45; font-family: inherit; re
   .tr-time, .time-inp { width: 86px; }
   .day-date-inp, .time-inp, .tr-time { min-height: 36px; padding: 6px 8px; }
   .day-hdr .day-date-inp { flex: 0 0 auto; }
-  .tr-note, .note-inp, .checkout-note-inp { min-width: 160px; flex-basis: 100%; }
+  .tr-note, .note-inp, .checkout-note-inp {
+    min-width: 0; flex: 1 1 100%; width: 100%; background: var(--surface); border-color: var(--border2);
+  }
   .note-inp, .tr-note { min-height: 42px; }
   .res-panel { grid-template-columns: 1fr; }
   .expense-form { grid-template-columns: 1fr; }
