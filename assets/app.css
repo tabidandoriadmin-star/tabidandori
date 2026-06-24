@@ -86,6 +86,8 @@ button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-
 .wish-compact-text.conflict { color: var(--coral); }
 .wish-open-btn { padding: 4px 9px; border: 1px solid #9DBFE2; border-radius: 999px; font-size: 11px; font-weight: 600; color: var(--blue); background: var(--blue-l); cursor: pointer; white-space: nowrap; }
 .wish-open-btn:hover { border-color: var(--blue); }
+.wcard .card-actions { gap: 5px; margin-top: 6px; }
+.wcard .card-more-menu { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
 .tag { font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 999px; white-space: nowrap; }
 .tag-food       { background: var(--amber-l);  color: var(--amber); }
 .tag-snack      { background: #FFF1F6;         color: #A33A64; }
@@ -120,6 +122,9 @@ button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-
 .card-more > summary { display: none; }
 .card-more-menu { display: contents; }
 .card-more-menu .danger-action { color: #B42318; }
+.ecard .card-actions { gap: 5px; margin-top: 5px; }
+.ecard .card-more-menu { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+.ecard .order-btns { gap: 3px; }
 .mobile-action-label { display: none; }
 .url-field { display: flex; align-items: center; gap: 6px; flex: 1; }
 .url-field svg { width:14px; height:14px; color: var(--hint); flex-shrink: 0; }
@@ -183,36 +188,37 @@ textarea.url-inp { min-height: 38px; line-height: 1.45; font-family: inherit; re
 .ecard { flex: 1; margin-bottom: 5px; }
 
 /* spot card */
-.spot-card { background: var(--bg); border: 1px solid var(--border); border-left: 4px solid var(--border2); border-radius: var(--radius); padding: 8px 12px; }
+.spot-card { display: flex; align-items: center; flex-wrap: wrap; gap: 0 6px; background: var(--bg); border: 1px solid var(--border); border-left: 4px solid var(--border2); border-radius: var(--radius); padding: 8px 12px; }
 .spot-card.cat-food { border-left-color: var(--amber); background: #FFFDF8; }
 .spot-card.cat-snack { border-left-color: #D85C8A; background: #FFF9FB; }
 .spot-card.cat-sightseeing { border-left-color: var(--purple); background: #FEFCFF; }
 .spot-card.cat-nature { border-left-color: var(--teal); background: #FAFFFD; }
 .spot-card.cat-activity { border-left-color: var(--coral); background: #FFF9F7; }
 .spot-card.cat-stay { border-left-color: var(--stay); background: #F2F5FA; }
-.stay-extra-row { display: flex; align-items: center; gap: 6px; margin-top: 6px; flex-wrap: wrap; padding-top: 6px; border-top: 1px dashed #BBD2F7; }
+.stay-extra-row { display: flex; align-items: center; gap: 6px; margin-top: 6px; flex-wrap: wrap; flex: 1 1 100%; padding-top: 6px; border-top: 1px dashed #BBD2F7; }
 .stay-extra-label { font-size: 11px; font-weight: 700; color: var(--stay); white-space: nowrap; }
 .checkout-card { background: #F2F5FA; border: 1px dashed #7F91B5; border-left: 4px solid var(--stay); border-radius: var(--radius); padding: 7px 12px; color: var(--stay); }
 .checkout-card .checkout-title { font-size: 12px; font-weight: 700; }
 .checkout-card .checkout-meta { font-size: 11px; color: var(--muted); margin-top: 2px; }
 .checkout-card .checkout-note { font-size: 11px; color: var(--muted); margin-top: 3px; }
 .checkout-note-inp { min-width: 180px; flex: 1 1 220px; border: 1px solid var(--border); background: var(--surface); }
-.spot-r1 { display: flex; align-items: center; gap: 7px; }
+.spot-r1 { display: flex; align-items: center; gap: 7px; flex: 1 1 260px; min-width: 0; }
 .spot-name { flex: 1; font-size: 13px; font-weight: 600; color: var(--text); }
 .spot-name-edit { flex: 1; min-width: 130px; font-size: 13px; font-weight: 600; color: var(--text); border: 1px solid transparent; border-radius: 5px; background: transparent; padding: 4px 6px; }
 .spot-name-edit:hover { border-color: var(--border); background: var(--surface); }
 .spot-name-edit:focus { outline: none; border-color: var(--teal); background: var(--surface); }
-.time-row { display: flex; align-items: center; gap: 6px; margin-top: 6px; flex-wrap: wrap; }
+.time-row { display: flex; align-items: center; gap: 6px; margin-top: 6px; flex-wrap: wrap; flex: 1 1 100%; }
 .time-lbl { font-size: 11px; color: var(--hint); white-space: nowrap; }
 .time-inp { font-size: 12px; border: 1px solid var(--border); border-radius: 5px; padding: 3px 6px; background: var(--surface); color: var(--muted); width: 90px; }
 .time-inp:focus { outline: none; border-color: var(--teal); }
 .note-inp { flex: 1; font-size: 12px; font-family: inherit; border: 1px solid transparent; border-radius: 5px; background: transparent; color: var(--muted); min-width: 60px; min-height: 32px; line-height: 1.45; padding: 5px 7px; resize: vertical; overflow-wrap: anywhere; }
 .note-inp::placeholder { color: var(--hint); }
 .note-inp:focus { outline: none; border-color: var(--teal); background: var(--surface); }
-.url-row { display: flex; align-items: center; gap: 6px; margin-top: 5px; }
+.url-row { display: flex; align-items: center; gap: 6px; margin-top: 5px; flex: 1 1 180px; min-width: 0; }
 
 /* reservation */
-.reservation-box { margin-top: 7px; border-top: 1px dashed var(--border); padding-top: 7px; }
+.reservation-box { flex: 0 0 auto; margin-top: 5px; border-top: 0; padding-top: 0; }
+.reservation-box.open { flex: 1 1 100%; border-top: 1px dashed var(--border); padding-top: 7px; }
 .res-toggle { display: inline-flex; align-items: center; gap: 5px; border: 1px solid var(--border2); border-radius: 999px; background: var(--surface); color: var(--muted); font-size: 11px; font-weight: 600; padding: 4px 10px; cursor: pointer; }
 .res-toggle:hover { background: var(--teal-l); color: var(--teal-d); border-color: var(--teal); }
 .res-toggle.has-res { color: var(--blue); border-color: #A9C8E8; background: var(--blue-l); }
@@ -269,10 +275,10 @@ textarea.url-inp { min-height: 38px; line-height: 1.45; font-family: inherit; re
 .today-date-note { font-size: 12px; color: var(--muted); margin-bottom: 10px; }
 
 /* transport card */
-.tr-card { background: var(--gray-l); border: 1px solid var(--border); border-radius: var(--radius); padding: 8px 12px; }
-.tr-r1 { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
-.tr-r2 { display: flex; align-items: center; gap: 6px; margin-top: 6px; }
-.tr-memo-row { display: flex; align-items: center; gap: 6px; margin-top: 6px; }
+.tr-card { display: flex; align-items: center; flex-wrap: wrap; gap: 0 6px; background: var(--gray-l); border: 1px solid var(--border); border-radius: var(--radius); padding: 8px 12px; }
+.tr-r1 { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; flex: 1 1 260px; min-width: 0; }
+.tr-r2 { display: flex; align-items: center; gap: 6px; margin-top: 6px; flex: 1 1 180px; min-width: 0; }
+.tr-memo-row { display: flex; align-items: center; gap: 6px; margin-top: 6px; flex: 1 1 100%; }
 .tr-memo-label { font-size: 11px; color: var(--hint); white-space: nowrap; }
 .tr-sel { font-size: 12px; font-weight: 600; color: var(--gray); border: 1px solid var(--border2); border-radius: 5px; background: var(--surface); padding: 3px 6px; cursor: pointer; }
 .tr-place { font-size: 12px; border: 1px solid var(--border); border-radius: 5px; padding: 3px 7px; background: var(--surface); color: var(--muted); width: 90px; }
@@ -401,6 +407,52 @@ textarea.url-inp { min-height: 38px; line-height: 1.45; font-family: inherit; re
   .card-more-menu .order-btns .mini-btn { flex: 1; }
   .desktop-action-label { display: none; }
   .mobile-action-label { display: inline; }
+  .wcard .card-actions { gap: 4px; margin-top: 6px; }
+  .wcard .card-more { display: contents; position: static; }
+  .wcard .card-more > summary { display: none; }
+  .wcard .card-more-menu {
+    display: flex; flex-direction: row; align-items: center; gap: 4px; flex-wrap: wrap;
+    position: static; width: auto; padding: 0; border: 0; border-radius: 0; background: transparent; box-shadow: none;
+  }
+  .wcard .move-btn,
+  .wcard .card-more-menu .map-btn,
+  .wcard .card-more-menu .wish-open-btn,
+  .wcard .card-more-menu .icon-btn {
+    width: auto; min-width: 34px; min-height: 34px; justify-content: center; padding: 5px 8px; border-radius: 999px; font-size: 11px;
+  }
+  .wcard .card-more-menu .map-action,
+  .wcard .card-more-menu .search-action { font-size: 0; }
+  .wcard .card-more-menu .map-action::after { content: "マップ"; font-size: 11px; }
+  .wcard .card-more-menu .search-action::after { content: "検索"; font-size: 11px; }
+  .wcard .desktop-action-label { display: inline; }
+  .wcard .mobile-action-label { display: none; }
+  .ecard .card-actions { gap: 4px; margin-top: 5px; }
+  .ecard .card-more { display: contents; position: static; }
+  .ecard .card-more > summary { display: none; }
+  .ecard .card-more-menu {
+    display: flex; flex-direction: row; align-items: center; gap: 4px; flex-wrap: wrap;
+    position: static; width: auto; padding: 0; border: 0; border-radius: 0; background: transparent; box-shadow: none;
+  }
+  .ecard .card-more-menu .map-btn,
+  .ecard .card-more-menu .wish-open-btn,
+  .ecard .card-more-menu .icon-btn,
+  .ecard .card-more-menu .mini-btn {
+    width: auto; min-width: 34px; min-height: 34px; justify-content: center; padding: 5px 8px; border-radius: 999px; font-size: 11px;
+  }
+  .ecard .card-more-menu .order-btns { width: auto; gap: 4px; flex: 0 0 auto; }
+  .ecard .card-more-menu .order-btns .mini-btn { flex: 0 0 auto; }
+  .ecard .card-more-menu .map-action,
+  .ecard .card-more-menu .search-action { font-size: 0; }
+  .ecard .card-more-menu .map-action::after { content: "マップ"; font-size: 11px; }
+  .ecard .card-more-menu .search-action::after { content: "検索"; font-size: 11px; }
+  .ecard .desktop-action-label { display: inline; }
+  .ecard .mobile-action-label { display: none; }
+  .ecard .res-toggle,
+  .ecard .compact-badge,
+  .ecard .compact-badges .map-btn {
+    min-height: 34px; min-width: 0; padding: 5px 8px; font-size: 11px;
+  }
+  .ecard .compact-badges { gap: 4px; margin-top: 5px; }
   .day-block, .day-body, .entry, .ecard, .spot-card, .tr-card { min-width: 0; max-width: 100%; box-sizing: border-box; }
   .ecard { overflow: hidden; }
   .spot-r1, .tr-r1, .tr-r2, .url-row, .stay-extra-row { flex-wrap: wrap; min-width: 0; }
@@ -482,4 +534,3 @@ textarea.url-inp { min-height: 38px; line-height: 1.45; font-family: inherit; re
   .p-item-chip { font-size: 10px; color: #1F2A44; background: #EEF1F7 !important; border: 1px solid #D8DDE7; border-radius: 999px; padding: 2px 7px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   .p-items-empty { font-size: 10px; color: #6B6A66; border: 1px solid #E0DED6; border-radius: 6px; padding: 8px 10px; }
 }
-

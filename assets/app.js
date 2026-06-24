@@ -610,9 +610,9 @@ function renderWishes() {
           <details class="card-more">
             <summary aria-label="${esc(w.name||'候補地')}のその他の操作">その他</summary>
             <div class="card-more-menu">
-              ${hu?`<button class="wish-open-btn" data-url="${esc(w.url)}" onclick="openUrlFromButton(this)">保存したURLを開く</button>`:''}
-              <button class="map-btn" onclick="openGoogleMapForWish(${w.id})">Googleマップ</button>
-              <button class="map-btn" onclick="openGoogleSearchForWish(${w.id})">Google検索</button>
+              ${hu?`<button class="wish-open-btn link-action" data-url="${esc(w.url)}" onclick="openUrlFromButton(this)">リンク</button>`:''}
+              <button class="map-btn map-action" onclick="openGoogleMapForWish(${w.id})">Googleマップ</button>
+              <button class="map-btn search-action" onclick="openGoogleSearchForWish(${w.id})">Google検索</button>
               <button class="icon-btn danger-action" onclick="removeWish(${w.id})" title="削除"><span class="desktop-action-label">✕</span><span class="mobile-action-label">✕ この候補を削除</span></button>
             </div>
           </details>
@@ -632,8 +632,8 @@ function renderWishes() {
         <details class="card-more">
           <summary aria-label="${esc(w.name||'候補地')}のその他の操作">その他</summary>
           <div class="card-more-menu">
-            <button class="map-btn" onclick="openGoogleMapForWish(${w.id})">Googleマップ</button>
-            <button class="map-btn" onclick="openGoogleSearchForWish(${w.id})">Google検索</button>
+            <button class="map-btn map-action" onclick="openGoogleMapForWish(${w.id})">Googleマップ</button>
+            <button class="map-btn search-action" onclick="openGoogleSearchForWish(${w.id})">Google検索</button>
             <button class="icon-btn danger-action" onclick="removeWish(${w.id})" title="削除"><span class="desktop-action-label">✕</span><span class="mobile-action-label">✕ この候補を削除</span></button>
           </div>
         </details>
@@ -908,7 +908,7 @@ function renderReservationPanel(dayId,e){
   const has=hasReservation(e);
   const r=e.reservation;
   const label=has ? '予約情報あり' : '予約情報';
-  return `<div class="reservation-box">
+  return `<div class="reservation-box${open?' open':''}">
     <button class="res-toggle${has?' has-res':''}" onclick="toggleReservation(${dayId},${e.id})">${open?'▾':'▸'} ${label}</button>
     ${open?`<div class="res-panel">
       <input type="text" value="${esc(r.name)}" placeholder="予約名・予約先" oninput="setReservation(${dayId},${e.id},'name',this.value)" />
@@ -969,8 +969,8 @@ function renderDayBlock(day){
                 <details class="card-more">
                   <summary aria-label="${esc(e.name||'スポット')}のその他の操作">その他</summary>
                   <div class="card-more-menu">
-                    <button class="map-btn" onclick="openGoogleMapForEntry(${day.id},${e.id})">Googleマップ</button>
-                    <button class="map-btn" onclick="openGoogleSearchForEntry(${day.id},${e.id})">Google検索</button>
+                    <button class="map-btn map-action" onclick="openGoogleMapForEntry(${day.id},${e.id})">Googleマップ</button>
+                    <button class="map-btn search-action" onclick="openGoogleSearchForEntry(${day.id},${e.id})">Google検索</button>
                     <span class="order-btns"><button class="mini-btn" onclick="moveEntry(${day.id},${e.id},-1)" title="上へ"><span class="desktop-action-label">↑</span><span class="mobile-action-label">↑ 上へ</span></button><button class="mini-btn" onclick="moveEntry(${day.id},${e.id},1)" title="下へ"><span class="desktop-action-label">↓</span><span class="mobile-action-label">↓ 下へ</span></button></span>
                     <button class="icon-btn danger-action" onclick="delEntry(${day.id},${e.id})" title="削除"><span class="desktop-action-label">✕</span><span class="mobile-action-label">✕ この予定を削除</span></button>
                   </div>
@@ -1029,7 +1029,7 @@ function renderDayBlock(day){
                 <details class="card-more">
                   <summary aria-label="移動予定のその他の操作">その他</summary>
                   <div class="card-more-menu">
-                    <button class="map-btn" onclick="openMapForEntry(${day.id},${e.id})">Googleマップ</button>
+                    <button class="map-btn map-action" onclick="openMapForEntry(${day.id},${e.id})">Googleマップ</button>
                     <span class="order-btns"><button class="mini-btn" onclick="moveEntry(${day.id},${e.id},-1)" title="上へ"><span class="desktop-action-label">↑</span><span class="mobile-action-label">↑ 上へ</span></button><button class="mini-btn" onclick="moveEntry(${day.id},${e.id},1)" title="下へ"><span class="desktop-action-label">↓</span><span class="mobile-action-label">↓ 下へ</span></button></span>
                     <button class="icon-btn danger-action" onclick="delEntry(${day.id},${e.id})" title="削除"><span class="desktop-action-label">✕</span><span class="mobile-action-label">✕ この移動を削除</span></button>
                   </div>
@@ -1119,7 +1119,7 @@ function renderCompactDayBlock(day, withId=false){
       const res=hasReservation(e)?'<span class="compact-badge">予約あり</span>':'';
       const link=isSafeHttpUrl(e.url)?`<button class="map-btn" data-url="${esc(e.url)}" onclick="openUrlFromButton(this)">リンク</button>`:'';
       const badges=(res||link)?`<div class="compact-badges">${res}${link}</div>`:'';
-      card=`<div class="spot-card cat-${esc(e.cat||'sightseeing')}"><div class="spot-r1"><span class="tag ${c.cls}">${c.label}</span><span class="spot-name">${esc(e.name)}</span></div><div class="card-actions"><details class="card-more"><summary aria-label="${esc(e.name||'スポット')}の地図操作">地図</summary><div class="card-more-menu"><button class="map-btn" onclick="openGoogleMapForEntry(${day.id},${e.id})">Googleマップ</button><button class="map-btn" onclick="openGoogleSearchForEntry(${day.id},${e.id})">Google検索</button></div></details></div>${time?`<div class="checkout-meta">${time}</div>`:''}${e.note?`<div class="compact-note">${esc(e.note)}</div>`:''}${badges}</div>`;
+      card=`<div class="spot-card cat-${esc(e.cat||'sightseeing')}"><div class="spot-r1"><span class="tag ${c.cls}">${c.label}</span><span class="spot-name">${esc(e.name)}</span></div><div class="card-actions"><details class="card-more"><summary aria-label="${esc(e.name||'スポット')}の地図操作">地図</summary><div class="card-more-menu"><button class="map-btn map-action" onclick="openGoogleMapForEntry(${day.id},${e.id})">Googleマップ</button><button class="map-btn search-action" onclick="openGoogleSearchForEntry(${day.id},${e.id})">Google検索</button></div></details></div>${time?`<div class="checkout-meta">${time}</div>`:''}${e.note?`<div class="compact-note">${esc(e.note)}</div>`:''}${badges}</div>`;
     }else{
       const m=TR.find(x=>x.val===e.mode)||TR[0];
       const route=[e.from||'', e.to||''].filter(Boolean).map(esc).join(' → ');
@@ -1127,7 +1127,7 @@ function renderCompactDayBlock(day, withId=false){
       const res=hasReservation(e)?'<span class="compact-badge">予約あり</span>':'';
       const link=isSafeHttpUrl(e.url)?`<button class="map-btn" data-url="${esc(e.url)}" onclick="openUrlFromButton(this)">リンク</button>`:'';
       const badges=(res||link)?`<div class="compact-badges">${res}${link}</div>`:'';
-      card=`<div class="tr-card"><div class="tr-r1"><span class="tr-sel" style="border:none;background:transparent;padding-left:0">${esc(m.sym+' '+(e.mode==='other'&&e.modeText?e.modeText:m.label))}</span>${route?`<span class="spot-name">${route}</span>`:''}</div><div class="card-actions"><details class="card-more"><summary aria-label="移動ルートの地図操作">地図</summary><div class="card-more-menu"><button class="map-btn" onclick="openMapForEntry(${day.id},${e.id})">Googleマップ</button></div></details></div>${time?`<div class="checkout-meta">${time}</div>`:''}${e.note?`<div class="compact-note">${esc(e.note)}</div>`:''}${badges}</div>`;
+      card=`<div class="tr-card"><div class="tr-r1"><span class="tr-sel" style="border:none;background:transparent;padding-left:0">${esc(m.sym+' '+(e.mode==='other'&&e.modeText?e.modeText:m.label))}</span>${route?`<span class="spot-name">${route}</span>`:''}</div><div class="card-actions"><details class="card-more"><summary aria-label="移動ルートの地図操作">地図</summary><div class="card-more-menu"><button class="map-btn map-action" onclick="openMapForEntry(${day.id},${e.id})">Googleマップ</button></div></details></div>${time?`<div class="checkout-meta">${time}</div>`:''}${e.note?`<div class="compact-note">${esc(e.note)}</div>`:''}${badges}</div>`;
     }
     return `<div class="entry"><div class="tl"><div class="dot ${dc}"></div>${!last?'<div class="vl"></div>':''}</div><div class="ecard">${card}</div></div>`;
   }).join('');
