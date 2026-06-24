@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>たびダンドリ｜旅の段取り、まるごとひとつに。</title>
+<meta name="description" content="たびダンドリは、行きたい場所のリストアップから旅程作成、持ち物チェック、グループでの精算まで、旅の段取りをひとつのアプリでまとめて整理できる無料の旅行管理アプリです。">
+<link rel="canonical" href="https://tabidandoriadmin-star.github.io/tabidandori/app.html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:site_name" content="たびダンドリ">
+<meta property="og:title" content="たびダンドリ｜旅の段取り、まるごとひとつに。">
+<meta property="og:description" content="たびダンドリは、行きたい場所のリストアップから旅程作成、持ち物チェック、グループでの精算まで、旅の段取りをひとつのアプリでまとめて整理できる無料の旅行管理アプリです。">
+<meta property="og:url" content="https://tabidandoriadmin-star.github.io/tabidandori/app.html">
+<meta property="og:image" content="https://tabidandoriadmin-star.github.io/tabidandori/assets/icons/icon-512.png">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0F6E56">
+<link rel="icon" href="assets/icons/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="assets/icons/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/app.css">
+</head>
+<body>
+
+<header class="header">
+  <a class="brand-home-link" href="index.html" title="たびダンドリ トップページへ">たびダンドリ</a>
+  <div class="header-title">
+    <input type="text" id="trip-title" aria-label="旅行タイトル" placeholder="旅行タイトルを入力・書き換え（例：夏休み旅行 2026）" oninput="scheduleSave()" />
+  </div>
+  <span class="save-badge" id="save-badge" role="status" aria-live="polite">
+    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" style="width:13px;height:13px"><path d="M10 2a8 8 0 100 16A8 8 0 0010 2zm0 4v4l3 3"/></svg>
+    <span id="save-text">読み込み中…</span>
+  </span>
+  <details class="header-more">
+    <summary aria-label="データ管理メニュー">データ管理</summary>
+    <div class="header-menu">
+      <span class="header-menu-label">バックアップと復元</span>
+      <button class="header-btn" onclick="exportJSON()" title="旅程データをバックアップ">JSON保存</button>
+      <button class="header-btn" id="share-btn" onclick="shareJSON()" title="iPhoneの共有メニューなどで旅程データを送ります">共有</button>
+      <button class="header-btn" onclick="triggerImport()" title="保存した旅程データを読み込み">読込</button>
+      <button class="header-btn" onclick="showBackupHistory()" title="端末内に保存した直近5件の履歴から復元">保存履歴</button>
+      <button class="header-btn danger" onclick="resetPlanner()" title="現在の旅行データを空にします。必要なら先にJSON保存してください">リセット</button>
+      <span class="header-menu-label">その他</span>
+      <a class="header-btn" href="manual.html" title="各機能の詳しい説明を開きます">マニュアル</a>
+      <button class="header-btn" onclick="showChangelog()" title="このアプリの主な更新内容を確認">更新履歴</button>
+    </div>
+  </details>
+  <input id="json-import" type="file" accept="application/json,.json" style="display:none" onchange="importJSONFile(event)" />
+  <button class="pdf-btn" onclick="exportPDF()" title="ブラウザの印刷機能でPDF保存します">
+    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 16v1a1 1 0 001 1h10a1 1 0 001-1v-1M7 10l3 3 3-3M10 3v10"/></svg>
+    PDF保存
+  </button>
+</header>
+
+<main>
+<nav class="tabs" aria-label="旅行プランの画面" role="tablist" onkeydown="handleTabKeydown(event)">
+  <button class="tab active" id="tab-wish" role="tab" aria-selected="true" aria-controls="panel-wish" tabindex="0" onclick="showTab('wish')">♡ 行きたい場所</button>
+  <button class="tab" id="tab-plan" role="tab" aria-selected="false" aria-controls="panel-plan" tabindex="-1" onclick="showTab('plan')">📅 旅程</button>
+  <button class="tab" id="tab-today" role="tab" aria-selected="false" aria-controls="panel-today" tabindex="-1" onclick="showTab('today')">☀️ 今日</button>
+  <button class="tab" id="tab-items" role="tab" aria-selected="false" aria-controls="panel-items" tabindex="-1" onclick="showTab('items')">🎒 持ち物</button>
+  <button class="tab" id="tab-settle" role="tab" aria-selected="false" aria-controls="panel-settle" tabindex="-1" onclick="showTab('settle')">¥ 精算</button>
+</nav>
+
+<div id="panel-wish" class="tab-panel active" role="tabpanel" aria-labelledby="tab-wish" tabindex="0">
+  <div id="onboarding-banner" class="tool-note" style="display:none">
+    <strong>はじめての方へ</strong><br>
+    ①「行きたい場所」に候補を追加 → ②「旅程」で日程に組み込む → ③「持ち物」「精算」も活用 → ④こまめに「データ管理」→「JSON保存」でバックアップ（保存データはこの端末のブラウザ内のみに残ります）。
+    <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap">
+      <button class="header-btn" onclick="loadSampleTrip()">サンプルを試す</button>
+      <a class="header-btn" href="manual.html">使い方マニュアルを見る</a>
+      <button class="header-btn" onclick="dismissOnboarding()">閉じる</button>
+    </div>
+  </div>
+  <div class="tool-note">候補地はURLと一言メモ付きで保存できます。Google Mapsや公式サイト、営業時間・注意点などを残しておくと、旅程に移したあとも引き継がれます。共有する時は「共有」ボタン、受け取ったデータは「読込」から取り込めます。</div>
+  <div class="add-bar">
+    <input type="text" id="wi" aria-label="追加する場所・スポット名" placeholder="場所・スポット名" onkeydown="if(event.key==='Enter')addWish()" />
+    <select id="wc" aria-label="追加するスポットの分類">
+      <option value="food">食事</option>
+      <option value="snack">おやつ</option>
+      <option value="sightseeing">観光</option>
+      <option value="nature">自然</option>
+      <option value="activity">体験</option>
+      <option value="stay">宿泊</option>
+    </select>
+    <button onclick="addWish()">＋ 追加</button>
+  </div>
+  <div class="wish-toolbar">
+    <span class="wish-compact-hint">簡易表示ではメモ欄を畳んで、内容だけ読みやすく表示します。</span>
+    <button class="day-ctrl-btn view-toggle-btn simple-mode-btn" onclick="toggleSimpleMode()" title="表示を切り替えます">簡易表示</button>
+  </div>
+  <div id="wlist"></div>
+  <div id="wempty" class="empty-msg">候補がありません。スポットを追加してみましょう！</div>
+</div>
+
+
+<div id="panel-plan" class="tab-panel" role="tabpanel" aria-labelledby="tab-plan" tabindex="0">
+  <div class="tool-note">予定カードは上下移動できます。移動カードは電車・バス・飛行機・徒歩・タクシー・レンタカー・その他に対応し、乗り場・予約番号などの移動メモも残せます。「地図」ボタンで都度確認できます。出発前はPDF保存に加えて、「共有」またはJSON保存でバックアップしておくと安心です。</div>
+  <div class="plan-header">
+    <button class="day-ctrl-btn" onclick="removeDay()">− 日を減らす</button>
+    <button class="day-ctrl-btn" onclick="addDay()">＋ 日を追加</button>
+  </div>
+  <div class="plan-sticky-controls">
+    <div id="day-jumps" class="day-jumpbar"></div>
+  </div>
+  <div id="days"></div>
+</div>
+
+<div id="panel-today" class="tab-panel" role="tabpanel" aria-labelledby="tab-today" tabindex="0">
+  <div class="tool-note">今日の日付に一致する予定だけを表示します。旅行日の入力がない場合や今日の予定がない場合は、旅程タブで日付を設定してください。</div>
+  <div id="today-days"></div>
+</div>
+
+<div id="panel-items" class="tab-panel" role="tabpanel" aria-labelledby="tab-items" tabindex="0">
+  <div class="tool-note">予約情報の「必要なもの」に入力した内容を、予約ごとにまとめて表示します。QRコード、身分証、チケット、タオルなど、予約に紐づく持ち物確認に使えます。「、」やカンマ（,）、改行で区切って入力すると、1つずつ別の項目として表示されます（例：QRコード、身分証、タオル）。</div>
+  <div id="needed-list"></div>
+</div>
+
+<div id="panel-settle" class="tab-panel" role="tabpanel" aria-labelledby="tab-settle" tabindex="0">
+  <div class="tool-note">旅行メンバーと支払いを登録すると、最後に誰が誰へいくら送ればよいかを自動計算します。負担者は支払いごとに選択でき、負担割合の調整（不均等割り）にも対応します。</div>
+  <div class="tool-note">このアプリは支払い額の計算を補助するものです。実際の決済・送金・資金の預かりは行いません。送金は別の方法（銀行振込や送金アプリなど）で行ってください。</div>
+  <div class="settle-section">
+    <div class="settle-title">通貨</div>
+    <select id="trip-currency" class="tr-sel" style="padding:8px 10px" onchange="setTripCurrency(this.value)"></select>
+    <div class="geocode-help" style="margin-top:6px">旅行全体で使う通貨です。費用・精算の表示に反映されます（旅程タブの費用欄も同じ通貨）。後から変更しても、入力済みの金額の数値は変わりません。</div>
+  </div>
+  <div class="settle-section">
+    <div class="settle-title">旅行メンバー</div>
+    <div class="member-add"><input id="settle-member-name" type="text" aria-label="旅行メンバーの名前" placeholder="名前を入力" onkeydown="if(event.key==='Enter')addSettlementMember()" /><button onclick="addSettlementMember()">追加</button></div>
+    <div class="member-chips" id="settle-members"></div>
+  </div>
+  <div class="settle-section">
+    <div class="settle-title">支払いを登録</div>
+    <div id="expense-form-area"></div>
+  </div>
+  <div class="settle-section">
+    <div class="settle-title">精算結果</div>
+    <div id="settlement-result"></div>
+  </div>
+  <div class="settle-section">
+    <div class="settle-title">支払い履歴</div>
+    <div id="expense-list"></div>
+  </div>
+</div>
+</main>
+
+<div id="print-area"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

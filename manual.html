@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>使い方マニュアル｜たびダンドリ</title>
+<meta name="description" content="たびダンドリの各機能（行きたい場所、旅程、今日、持ち物、精算、データ管理）の詳しい使い方をまとめたマニュアルです。">
+<link rel="canonical" href="https://tabidandoriadmin-star.github.io/tabidandori/manual.html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:site_name" content="たびダンドリ">
+<meta property="og:title" content="使い方マニュアル｜たびダンドリ">
+<meta property="og:description" content="たびダンドリの各機能（行きたい場所、旅程、今日、持ち物、精算、データ管理）の詳しい使い方をまとめたマニュアルです。">
+<meta property="og:url" content="https://tabidandoriadmin-star.github.io/tabidandori/manual.html">
+<meta property="og:image" content="https://tabidandoriadmin-star.github.io/tabidandori/assets/icons/icon-512.png">
+<link rel="icon" href="assets/icons/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="assets/icons/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="site-logo" href="index.html">たびダンドリ</a>
+    <nav class="site-nav" aria-label="サイトナビゲーション">
+      <a href="getting-started.html">使い方</a>
+      <a href="manual.html" aria-current="page">マニュアル</a>
+      <a href="guide/index.html">旅行ガイド</a>
+      <a href="faq.html">FAQ</a>
+      <a class="nav-cta" href="app.html">アプリを開く</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page narrow">
+  <h1>使い方マニュアル</h1>
+  <p class="lead">たびダンドリは「行きたい場所」「旅程」「今日」「持ち物」「精算」の5つのタブと、データ管理機能で構成されています。各機能の詳しい使い方をまとめています。</p>
+
+  <h2>♡ 行きたい場所</h2>
+  <p>気になるスポットを候補として登録するタブです。名前と分類（食事・おやつ・観光・自然・体験・宿泊）を入力して追加します。各候補にはGoogle マップ等のURLと一言メモを残せるので、営業時間や注意点なども一緒に保存できます。候補は登録した順に表示され、旅程に組み込むと「予定済み」として区別されます。</p>
+
+  <h2>📅 旅程</h2>
+  <p>行きたい場所を日ごとの予定に振り分けるタブです。「日を追加」「日を減らす」で旅行日数を調整し、各予定は上下に並べ替えできます。移動の予定は電車・バス・飛行機・徒歩・タクシー・レンタカー・その他から選び、乗り場や予約番号などのメモも記録できます。各スポットの「地図」ボタンからGoogle マップなどを外部リンクで開いて、その場で道順を確認できます。</p>
+
+  <h2>☀️ 今日</h2>
+  <p>旅程の中から、今日の日付に一致する予定だけを表示するタブです。旅行日を入力していない場合や、今日の予定がない場合は何も表示されません。旅程タブで各日の日付を設定してから使ってください。旅行中、その日の予定だけをすぐ確認したいときに便利です。</p>
+
+  <h2>🎒 持ち物</h2>
+  <p>旅程の予約情報に入力した「必要なもの」（チケット、QRコード、身分証、タオルなど）を、予約ごとにまとめて表示するタブです。個別に持ち物リストを作る必要はなく、旅程の入力内容がそのまま反映されます。</p>
+  <div class="note-box">「必要なもの」欄は、「、」（読点）やカンマ（,）、改行で区切って入力すると、1つずつ別の持ち物として判定され、持ち物タブにそれぞれ表示されます。例：「QRコード、身分証、タオル」と入力すると、「QRコード」「身分証」「タオル」の3項目として表示されます。</div>
+
+  <h2>¥ 精算</h2>
+  <p>グループ旅行での立て替えを計算するタブです。まず通貨を選び、旅行メンバーを登録します。支払いを登録する際は、支払った人と負担する人を選び、不均等な割合での負担にも対応しています。最終的に「誰が誰へいくら払えばよいか」が自動で計算されます。</p>
+  <div class="note-box">精算機能は支払い額の計算を補助するものです。実際の決済・送金・資金の預かりは行いません。送金は銀行振込や送金アプリなど、別の方法で行ってください。</div>
+
+  <h2>データ管理</h2>
+  <p>ヘッダーの「データ管理」メニューから、以下の操作ができます。</p>
+  <ul>
+    <li><strong>JSON保存</strong>：旅程データをファイルとして書き出し、バックアップします。</li>
+    <li><strong>共有</strong>：スマホの共有メニュー等を使って、旅程データを他の人に送ります。</li>
+    <li><strong>読込</strong>：保存したJSONファイルを読み込んで、旅程データを復元します。</li>
+    <li><strong>保存履歴</strong>：端末内に自動保存された直近5件の履歴から復元します。</li>
+    <li><strong>リセット</strong>：現在の旅行データを空にします。必要なら先にJSON保存してください。</li>
+  </ul>
+
+  <h2>PDF保存</h2>
+  <p>ヘッダーの「PDF保存」ボタンから、ブラウザの印刷機能を使って旅程をPDFとして保存・印刷できます。出発前に紙やオフライン環境でも確認できるよう保存しておくと安心です。</p>
+
+  <h2>データの保存場所について</h2>
+  <p>入力した内容は、お使いの端末のブラウザ内にのみ保存されます。サーバーには送信されません。そのため、別の端末やブラウザで開いた場合はデータが表示されません。引き続き使う場合は、JSON保存・共有・読込の機能を使ってデータを移してください。</p>
+
+  <p><a class="btn btn-primary" href="app.html">アプリを開く</a></p>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="footer-links">
+      <a href="contact.html">お問い合わせ</a>
+      <a href="terms.html">利用規約</a>
+      <a href="privacy.html">プライバシーポリシー</a>
+      <a href="changelog.html">更新履歴</a>
+    </div>
+    <div class="footer-copy">© 2026 たびダンドリ</div>
+  </div>
+</footer>
+
+</body>
+</html>

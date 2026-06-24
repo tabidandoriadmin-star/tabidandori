@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+  <title id="title">たびダンドリ アプリアイコン v3b</title>
+  <desc id="desc">チェックリストをより主役にし、控えめな位置ピンを右上に添えた旅行管理アプリのアプリアイコン</desc>
+
+  <rect width="1024" height="1024" rx="240" fill="#F7F3EA"/>
+
+  <rect x="214" y="176" width="596" height="672" rx="96" fill="white" stroke="#0F6E56" stroke-width="42"/>
+  <rect x="350" y="132" width="324" height="92" rx="42" fill="#0F6E56"/>
+  <circle cx="404" cy="178" r="12" fill="white" opacity="0.95"/>
+  <circle cx="458" cy="178" r="12" fill="white" opacity="0.95"/>
+  <circle cx="512" cy="178" r="12" fill="white" opacity="0.95"/>
+
+  <path d="M312 350 L360 398 L448 292" fill="none" stroke="#0F6E56" stroke-width="42" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="500" y1="346" x2="684" y2="346" stroke="#8DCDBE" stroke-width="34" stroke-linecap="round"/>
+
+  <path d="M312 500 L360 548 L448 442" fill="none" stroke="#0F6E56" stroke-width="42" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="500" y1="496" x2="684" y2="496" stroke="#8DCDBE" stroke-width="34" stroke-linecap="round"/>
+
+  <path d="M312 650 L360 698 L448 592" fill="none" stroke="#0F6E56" stroke-width="42" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="500" y1="646" x2="640" y2="646" stroke="#8DCDBE" stroke-width="34" stroke-linecap="round"/>
+
+  <circle cx="312" cy="778" r="26" fill="#0F6E56"/>
+  <line x1="358" y1="778" x2="496" y2="778" stroke="#8DCDBE" stroke-width="26" stroke-linecap="round"/>
+  <circle cx="542" cy="778" r="26" fill="#0F6E56"/>
+  <line x1="588" y1="778" x2="690" y2="778" stroke="#8DCDBE" stroke-width="26" stroke-linecap="round"/>
+  <circle cx="736" cy="778" r="26" fill="#0F6E56"/>
+
+  <!-- Smaller corner pin -->
+  <circle cx="776" cy="246" r="58" fill="white"/>
+  <path d="M776 192 C744 192 718 218 718 250 C718 298 776 352 776 352 C776 352 834 298 834 250 C834 218 808 192 776 192Z" fill="#0F6E56"/>
+  <circle cx="776" cy="252" r="21" fill="white"/>
+</svg>

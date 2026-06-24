@@ -1,0 +1,15 @@
+{
+  "name": "たびダンドリ",
+  "short_name": "たびダンドリ",
+  "description": "行きたい場所のリストアップから旅程作成、持ち物チェック、グループでの精算まで、旅の段取りをひとつのアプリでまとめて整理できる無料の旅行管理アプリです。",
+  "start_url": "./app.html",
+  "scope": "./",
+  "display": "standalone",
+  "lang": "ja",
+  "background_color": "#FFFFFF",
+  "theme_color": "#0F6E56",
+  "icons": [
+    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}
